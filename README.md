@@ -89,3 +89,10 @@ gradle, Maven 같은 툴들은 의존관계를 다 관리해줌. (필요한 것 
 <br>
 
 ### 03 View 환경설정
+
+**스프링 필요한 기능 찾기!**
+![Alt text](./img/image5.png)
+`Welcome 페이지 찾기` : spring.io 에서 Projects > Spring Boot > LEARN > Documentation > Reference Doc. > Web > 1.1.6. Welcome Page
+
+<br>
+
