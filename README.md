@@ -47,7 +47,9 @@ Settings → gradle 검색 → `Build and run using` & `Run tests using` : `Inte
 <img src="./img/image3.png" width="200" height="20"/>
 External Libraries : 불러온 라이브러리들
 
+
 <br>
+
 
 gradle, Maven 같은 툴들은 의존관계를 다 관리해줌. (필요한 것 다 불러옴.)
 
