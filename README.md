@@ -127,6 +127,8 @@ public class HelloController {
 </body>
 ```
 
+<br>
+
 <img src="./img/image6.png" width="350" height="200"/>
 
 - 컨트롤러에서 리턴 값으로 문자를 반환하면 뷰 리졸버(viewResolver)가 화면을 찾아서 처리
