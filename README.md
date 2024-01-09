@@ -44,8 +44,8 @@ Settings → gradle 검색 → `Build and run using` & `Run tests using` : `Inte
 
 ### 02 라이브러리 살펴보기
 
-<img src="./img/image3.png" width="200" height="20"/>
-<br>External Libraries : 불러온 라이브러리들
+<img src="./img/image3.png" width="200" height="20"/><br>
+External Libraries : 불러온 라이브러리들
 
 <br>
 
