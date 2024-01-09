@@ -51,7 +51,7 @@ External Libraries : 불러온 라이브러리들
 
 gradle, Maven 같은 툴들은 의존관계를 다 관리해줌. (필요한 것 다 불러옴.)
 
-<br><img src="./img/image4.png" width="300" height="90"/>
+<img src="./img/image4.png" width="300" height="90"/>
 <br>Dependencies : 라이브러리 간의 의존관계
 
 <br>
