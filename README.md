@@ -172,8 +172,112 @@ public class HelloController {
 <br>
 
 ### 02 MVC와 템플릿 엔진
+- MVC : Model, View, Controller
+    - View : 화면과 관련된 일
+    - Controller : 비즈니스 로직.. 서버 뒷단 관련된 일
+    - Model : 화면에 넘겨줌
+
+- `^ + P`(ctrl + 6 + P) : 옵션넣기
+
+> Controller
+```java
+// HelloController.java
+
+@GetMapping("hello-mvc")
+public String helloMvc(@RequestParam("name") String name, Model model) {
+    model.addAttribute("name", name);
+    return "hello-template";
+}
+```
+
+> View
+```html
+<!-- hello-template.html -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- 서버 없이 열면 : hello! empty -->
+<!-- 템플릿엔진으로 동작하면 : hello + ${name} (치환) -->
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
+```
+
+- `localhost:8080/hello-mvc` 접속하면 에러
+- `localhost:8080/hello-mvc?name=spring!` 접속 → 화면: hello spring!
+
+<img src="./img/image8.png" width="350" height="200"/>
+
+- helloController에 메서드 맵핑이 되어있으니 스프링에선 메서드 호출
+- return : hello-template → model : key는 name, value는 spring!
+- viewResolver : 화면과 관련된 해결자. view를 찾고 템플릿을 연결. (hello-template.html 찾음)
+- 변환한 html을 넘겨줌.
+
+<br>
+
+### 03 API
+
+**@ResponseBody 사용 원리**
+
+<img src="./img/image9.png" width="350" height="200"/>
+
+```java
+// HelloController.java
+@GetMapping("hello-api")
+@ResponseBody
+public Hello helloApi(@RequestParam("name") String name) {  // Hello 라는 객체
+    Hello hello = new Hello();
+    hello.setName(name);
+    return hello;  // 객체를 return
+}
+
+// static 클래스로 만들면, 클래스(HelloController) 안에서 클래스(Hello) 사용 가능
+static class Hello {
+    private String name;
+    
+    // 프로퍼티 접근 방식
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+
+`@ResponseBody` 사용
+- HTTP의 BODY에 문자 내용을 직접 반환
+    - `viewResolver` 대신에 `HttpMessageConverter`가 동작
+    - 기본 문자처리 : `StringHttpMessageConverter`
+    - 기본 객체처리 : `MappingJackson2HttpMessageConverter`
+    - byte 처리 등등 기타 여러 `HttpMessageConverter`
+
+
+- 객체가 들어오면 스프링은, 기본 디폴트: json방식으로 데이터를 만들어 HTTP응답에 반환
+- HttpMessageConverter : 단순 문자면, StringConverter 동작. 객체면, Json Converter 동작.
+
+- Jackson : json 객체를 json으로 바꿔주는 라이버러리.
+
+<br>
 
 ## 3️⃣ 회원 관리 예제 - 백엔드 개발
+### 01 비즈니스 요구사항 정리
+- 데이터 : 회원 ID, 이름
+- 기능 : 회원 등록, 조회
+- 가상 시나리오 - 아직 데이터 저장소(DB) 선정 X (예: 성능 중요한 DB, 일반적인 관계형 DB, No SQL 등 정해지지 않은 상황)
+
+<br>
+
+<img src="./img/image10.png" width="400" height="170"/>
+
+- 컨트롤러: 웹 MVC의 컨트롤러 역할
+- 서비스: 핵심 비즈니스 로직 구현(예: 회원 중복가입 불가능 등). 비즈니스 도메인 객체를 가지고 핵심 비즈니스 로직이 동작하도록 구현한 객체.
+- 리포지토리: 데이터베이스에 접근, 도메인 객체를 DB에 - 저장하고 관리
+- 도메인: 비즈니스 도메인 객체, 예) 회원, 주문, 쿠폰 등등 주로 데이터베이스에 저장하고 관리됨
+
+<br>
+
 ## 4️⃣ 스프링 빈과 의존관계
 ## 5️⃣ 회원 관리 예제 - 웹 MVC 개발
 ## 6️⃣ 스프링 DB 접근 기술

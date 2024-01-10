@@ -1,0 +1,7 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- 서버 없이 열면 : hello! empty -->
+<!-- 템플릿엔진으로 동작하면 : hello + ${name} (치환) -->
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
