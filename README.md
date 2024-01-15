@@ -293,6 +293,11 @@ static class Hello {
 
 ### 02 회원 도메인과 리포지토리 만들기
 
+- `optional` : null 일 때도 optional로 감싸서 반환
+- `findAll` : 지금까지 저장된 회원 리스트 모두 반환
+- `findAny` : 하나만 찾음. 끝까지 돌고 없으면 optional에 null 포함돼서 반환
+
+### 03 회원 리포지토리 테스트 케이스 작성
 
 ## 4️⃣ 스프링 빈과 의존관계
 ## 5️⃣ 회원 관리 예제 - 웹 MVC 개발
